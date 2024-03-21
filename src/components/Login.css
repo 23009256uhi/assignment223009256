@@ -1,0 +1,22 @@
+.login-container {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+.login-button {
+  background-color: red;
+  border-width: 0;
+  padding: 12px 24px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
