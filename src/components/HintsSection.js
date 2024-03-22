@@ -3,6 +3,7 @@ import VideoSection from "./VideoSection";
 
 function HintsSection() {
   const [showVideo, setShowVideo] = useState(false);
+  const [selectedVideoId, setSelectedVideoId] = useState("");
 
   useEffect(() => {
     if (showVideo) {
@@ -12,8 +13,9 @@ function HintsSection() {
     }
   }, [showVideo]);
 
-  function handleVideoClick() {
+  function handleVideoClick(videoId) {
     setShowVideo(true);
+    setSelectedVideoId(videoId);
   }
 
   function handleCloseVideo() {
@@ -31,12 +33,12 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-primary mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video1id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-primary mb-1 p-2">
-                Primary
+                Summary
               </button>
             </div>
 
@@ -44,12 +46,12 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-primary mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video2id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-primary mb-1 p-2">
-                Primary
+                Summary
               </button>
             </div>
 
@@ -57,12 +59,12 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-primary mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video3id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-primary mb-1 p-2">
-                Primary
+                Summary
               </button>
             </div>
           </div>
@@ -72,12 +74,12 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-success mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video4id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-success mb-1 p-2">
-                Success
+                Summary
               </button>
             </div>
 
@@ -85,12 +87,12 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-success mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video5id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-success mb-1 p-2">
-                Success
+                Summary
               </button>
             </div>
 
@@ -98,18 +100,20 @@ function HintsSection() {
               <button
                 type="button"
                 className="btn btn-success mb-1 p-2"
-                onClick={handleVideoClick}
+                onClick={() => handleVideoClick("video6id")}
               >
                 Video
               </button>
               <button type="button" className="btn btn-success mb-1 p-2">
-                Success
+                Summary
               </button>
             </div>
           </div>
         </div>
       </div>
-      {showVideo && <VideoSection onClose={handleCloseVideo} />}
+      {showVideo && (
+        <VideoSection onClose={handleCloseVideo} videoId={selectedVideoId} />
+      )}
     </div>
   );
 }

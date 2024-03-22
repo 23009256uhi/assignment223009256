@@ -17,6 +17,8 @@
   padding: 20px;
   border: 1px solid black;
   z-index: 9999;
+  max-height: 650px;
+  height: 100%;
 }
 
 .btn-close {
@@ -52,4 +54,15 @@
 .button-group {
   display: flex;
   gap: 10px;
+}
+
+.message-sent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.message-sent p {
+  font-size: 24px;
 }
