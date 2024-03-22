@@ -38,7 +38,7 @@ function AnswerSection() {
       <div className="row">
         <div className="col-sm text-center">
           <button type="button" className="btn btn-primary p-4">
-            Primary
+            CHECK MY ANSWER
           </button>
         </div>
       </div>
