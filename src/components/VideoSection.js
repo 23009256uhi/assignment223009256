@@ -1,6 +1,12 @@
 import "./VideoSection.css";
 import { useState } from "react";
 import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 function VideoSection({ onClose, videoId }) {
   const [showInput, setShowInput] = useState(false);
@@ -18,6 +24,19 @@ function VideoSection({ onClose, videoId }) {
 
       if (user) {
         const userId = user.uid;
+        const db = getFirestore();
+        const messagesCollection = collection(db, "Messages");
+
+        // Create a new message object
+        const newMessage = {
+          userId: userId,
+          videoId: videoId,
+          text: confusedText,
+          timestamp: serverTimestamp(),
+        };
+
+        // Add the new message to the "messages" collection
+        await addDoc(messagesCollection, newMessage);
 
         setMessageSent(true);
         setConfusedText("");
