@@ -6,6 +6,9 @@ import {
   collection,
   addDoc,
   serverTimestamp,
+  query,
+  getDocs,
+  where,
 } from "firebase/firestore";
 
 function VideoSection({ onClose, videoId }) {
@@ -13,8 +16,35 @@ function VideoSection({ onClose, videoId }) {
   const [messageSent, setMessageSent] = useState(false);
   const [confusedText, setConfusedText] = useState("");
 
-  function handleConfusedClick() {
-    setShowInput(true);
+  async function handleConfusedClick() {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (user) {
+        const userId = user.uid;
+        const db = getFirestore();
+        const messagesCollection = collection(db, "Messages");
+        const q = query(
+          messagesCollection,
+          where("userId", "==", userId),
+          where("videoId", "==", videoId),
+          where("replied", "==", false)
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          setShowInput(true);
+        } else {
+          alert(
+            "You already have a pending message for this video. Please wait for the admin to reply before sending another message."
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error checking unreplied messages", error);
+    }
   }
 
   async function handleSendClick() {
@@ -33,6 +63,7 @@ function VideoSection({ onClose, videoId }) {
           videoId: videoId,
           text: confusedText,
           timestamp: serverTimestamp(),
+          replied: false,
         };
 
         // Add the new message to the "messages" collection
