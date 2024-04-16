@@ -29,11 +29,13 @@ function PublicRoute({ authenticated }) {
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
+    auth.onAuthStateChanged((userData) => {
+      if (userData) {
         setAuthenticated(true);
+        setUser(userData);
       } else {
         setAuthenticated(false);
       }
@@ -57,7 +59,11 @@ function App() {
             path="/"
             element={<PrivateRoute authenticated={authenticated} />}
           >
-            <Route exact path="/question" element={<QuestionPage />} />
+            <Route
+              exact
+              path="/question"
+              element={<QuestionPage user={user} />}
+            />
           </Route>
         </Routes>
       </Router>
