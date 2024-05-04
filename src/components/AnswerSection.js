@@ -14,8 +14,6 @@ function AnswerSection() {
     const answersDetails =
       answersData.balances.balances.questions.fullquestion.answers;
 
-    // setAnswers(answersDetails);
-
     // Calculate total selection count
     const totalSelectionCount = answersDetails.reduce(
       (sum, answer) => sum + (answer.selectionCount || 0),
