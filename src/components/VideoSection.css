@@ -21,6 +21,11 @@
   height: 100%;
 }
 
+.faq-div {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
 .btn-close {
   position: absolute;
   top: 10px;

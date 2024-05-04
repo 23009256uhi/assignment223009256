@@ -26,11 +26,6 @@ function MessageBox({
     setReplyImage(file);
   }
 
-  // UNCOMMENT TO AVOID REPLIESREF REPETITION
-  // const repliesRef = selectedMessage
-  // ? collection(db, "Messages", selectedMessage.id, "replies")
-  // : null;
-
   useEffect(() => {
     if (selectedMessage) {
       const repliesRef = collection(
