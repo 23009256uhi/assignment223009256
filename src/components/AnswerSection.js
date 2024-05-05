@@ -42,14 +42,19 @@ function AnswerSection() {
 
   return (
     <div className="col-12">
-      <h3 className="text-center">Answers</h3>
-      <button
-        type="button"
-        className="btn btn-secondary btn-sm"
-        onClick={togglePercentage}
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ gap: "10px" }}
       >
-        {showPercentage ? "Hide Percentage" : "Show Percentage"}
-      </button>
+        <h3 className="text-center mb-0">Answers</h3>
+        <button
+          type="button"
+          className="btn btn-secondary btn-sm"
+          onClick={togglePercentage}
+        >
+          {showPercentage ? "Hide Percentage" : "Show Percentage"}
+        </button>
+      </div>
       <div className="p-3 mb-2 bg-light">
         <div className="row">
           {answers.map((answer, index) => (

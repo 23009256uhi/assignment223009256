@@ -58,7 +58,6 @@ function QuestionPage({ user }) {
       <div className="header d-flex justify-content-end align-items-center p-3">
         <h1 className="text-center header-title mb-0">Question Page</h1>
         <div className="user-icons-container">
-          {/* {isUserAdmin && messages && ( */}
           {messages && (
             <div className="user-icons d-flex align-items-center">
               {messages.map((message) => (

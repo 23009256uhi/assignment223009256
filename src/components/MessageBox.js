@@ -75,7 +75,6 @@ function MessageBox({
 
       const messageRef = doc(db, "Messages", selectedMessage.id);
       await updateDoc(messageRef, {
-        // replied: !selectedMessage.replied,
         replied: true,
       });
 
@@ -134,7 +133,6 @@ function MessageBox({
               )}
             </div>
           ))}
-        {/* {replies && replies.map((reply) => <p key={reply.id}>{reply.text}</p>)} */}
       </div>
       <div className="message-input-container d-flex align-items-center mt-3">
         <label className="picture-icon">
