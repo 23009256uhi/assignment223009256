@@ -58,20 +58,22 @@ function MessageBox({
         "replies"
       );
 
+      let replyData = {
+        text: replyMessage,
+        author: user.uid,
+        timestamp: new Date(),
+      };
       const storageRef = ref(
         storage,
-        `Messages/${selectedMessage.id}/${Date.now}`
+        `Messages/${selectedMessage.id}/${Date.now()}`
       );
       if (replyImage) {
         await uploadBytes(storageRef, replyImage);
         const imageUrl = await getDownloadURL(storageRef);
-        await addDoc(repliesRef, {
-          text: replyMessage,
-          author: user.uid,
-          timestamp: new Date(),
-          imageUrl: imageUrl,
-        });
+        replyData.imageUrl = imageUrl;
       }
+
+      await addDoc(repliesRef, replyData);
 
       const messageRef = doc(db, "Messages", selectedMessage.id);
       await updateDoc(messageRef, {
